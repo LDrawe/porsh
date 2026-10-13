@@ -1,7 +1,7 @@
 <div align="center">
   <img src="https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Desktop%20computer/3D/desktop_computer_3d.png" width="120" alt="Brsh Logo" />
-  <h1>Brsh (Virtual OS & CLI Emulator)</h1>
-  <p><em>An educational Terminal and Virtual File System (VFS) emulator focused on OS architecture.</em></p>
+  <h1>Brsh (Interactive Shell & Virtual File System/OS)</h1>
+  <p><em>An interactive Unix-like Shell and Virtual File System (VFS) engine implemented in TypeScript.</em></p>
 
   <a href="https://nodejs.org">
     <img src="./assets/badges/nodejs.svg" alt="Node.js" />
@@ -22,7 +22,7 @@
   <br />
 </div>
 
-**Brsh** is a TypeScript-based educational project that emulates the core principles of a real filesystem. Originally built as a university assignment on Operating Systems, the project now implements many advanced features, such as an in-memory nested inode tree, two-way synchronization with the physical disk, strict directory sandboxing, and an atomic I/O operations, all exposed through a fully localized Brazilian Portuguese (PT-BR) CLI.
+**Brsh** is a high-reliability Unix-like interactive shell and Virtual File System (VFS) engine implemented in TypeScript. It brings core operating system primitives into user-space, featuring an in-memory nested inode tree, two-way state synchronization with physical storage, strict directory sandboxing (chroot jail model), and transactional atomic I/O operations, all exposed through an interactive command-line interface.
 
 ---
 
@@ -31,7 +31,7 @@
 - **PT-BR Interface**: Full command suite built specifically for Brazilian Portuguese speakers (`listar`, `carq`, `apagar`, `renomear`).
 - 🗂️ **Virtual File System (VFS)**: An in-memory object-oriented nested tree (`IVfsNode`) that syncs automatically with the physical disk.
 - 🔁 **2-Way Sync (Smart Boot)**: Recovers physically deleted files based on memory state, and pulls physical files into the VFS on boot.
-- 🛡️ **Kernel Sandboxing**: Anti-Directory-Traversal protection. It creates a *chroot jail* model that prevents users from escaping their `/home` environment.
+- 🛡️ **Kernel Sandboxing**: Anti-Directory-Traversal protection. It creates a _chroot jail_ model that prevents users from escaping their `/home` environment.
 - ⚛️ **Atomic I/O Operations**: Implements atomic writing (temp-to-rename) to prevent tree corruption during sudden process terminations.
 - 🛑 **POSIX-Compliant Signaling**: Graceful exit handling for `SIGINT` (Ctrl+C) and `EOF` (Ctrl+D), mimicking authentic Linux bash behavior.
 - ⚡ **Zero-Overhead Runtime**: Built to run natively on `Node.js` (using Type Stripping) or fast runtimes like `Bun` and `Deno`.
@@ -63,46 +63,51 @@ graph TD;
 **Brsh** supports a complete ecosystem for file management.
 
 ### Directory Navigation
-| Command | Parameters | Description |
-| :--- | :--- | :--- |
-| `cdir` | `<name>` | Creates a new directory. |
-| `rdir` | `<name>` | Removes a directory (only if empty). |
-| `mudar` | `<path>` | Changes the current working directory. |
-| `atual` | - | Prints the absolute path of the current directory. |
-| `listar` | - | Lists files and subfolders in alphabetical order. |
-| `listarinv` | - | Lists files and subfolders in reverse alphabetical order. |
-| `listartudo`| - | Recursively lists the entire directory tree. |
+
+| Command      | Parameters | Description                                               |
+| :----------- | :--------- | :-------------------------------------------------------- |
+| `cdir`       | `<name>`   | Creates a new directory.                                  |
+| `rdir`       | `<name>`   | Removes a directory (only if empty).                      |
+| `mudar`      | `<path>`   | Changes the current working directory.                    |
+| `atual`      | -          | Prints the absolute path of the current directory.        |
+| `listar`     | -          | Lists files and subfolders in alphabetical order.         |
+| `listarinv`  | -          | Lists files and subfolders in reverse alphabetical order. |
+| `listartudo` | -          | Recursively lists the entire directory tree.              |
 
 ### File Operations
-| Command | Parameters | Description |
-| :--- | :--- | :--- |
-| `carq` | `<name>` | Creates an empty file (`touch`). |
-| `ler` | `<name>` | Reads and displays file content via streaming (`cat`). |
-| `apagar` | `<target>` | Recursively deletes a file or directory (`rm -rf`).|
-| `copiar` | `<src>` `<dst>`| Copies a file/folder, assigning new virtual IDs. |
-| `mover` | `<src>` `<dst>`| Moves a file/folder. |
-| `renomear`| `<old>` `<new>`| Renames a file/folder in the same directory. |
-| `buscar` | `<name>` | Deep search (DFS) for a file. |
-| `listaratr`| `<target>` | Shows disk attributes and creation date. |
+
+| Command     | Parameters      | Description                                            |
+| :---------- | :-------------- | :----------------------------------------------------- |
+| `carq`      | `<name>`        | Creates an empty file (`touch`).                       |
+| `ler`       | `<name>`        | Reads and displays file content via streaming (`cat`). |
+| `apagar`    | `<target>`      | Recursively deletes a file or directory (`rm -rf`).    |
+| `copiar`    | `<src>` `<dst>` | Copies a file/folder, assigning new virtual IDs.       |
+| `mover`     | `<src>` `<dst>` | Moves a file/folder.                                   |
+| `renomear`  | `<old>` `<new>` | Renames a file/folder in the same directory.           |
+| `buscar`    | `<name>`        | Deep search (DFS) for a file.                          |
+| `listaratr` | `<target>`      | Shows disk attributes and creation date.               |
 
 ### System Utilities
-| Command | Parameters | Description |
-| :--- | :--- | :--- |
-| `alterarusr`| `<login>` | Switches user sessions. |
-| `deletarusr`| `<login>` | Deletes a user environment and revokes access. |
-| `resetar` | - | Formats the VFS, wiping the disk and rebuilding the system. |
-| `clear` | - | Clears the terminal screen. |
-| `quit` | - | Exits the shell cleanly. |
+
+| Command      | Parameters | Description                                                 |
+| :----------- | :--------- | :---------------------------------------------------------- |
+| `alterarusr` | `<login>`  | Switches user sessions.                                     |
+| `deletarusr` | `<login>`  | Deletes a user environment and revokes access.              |
+| `resetar`    | -          | Formats the VFS, wiping the disk and rebuilding the system. |
+| `clear`      | -          | Clears the terminal screen.                                 |
+| `quit`       | -          | Exits the shell cleanly.                                    |
 
 ---
 
 ## 🚀 Getting Started
 
 ### 1. Prerequisites
+
 - **Node.js** (v24+) or **Bun** (v1.x)
 - **Git**
 
 ### 2. Running the Project
+
 ```bash
 git clone https://github.com/LDrawe/brsh.git
 cd brsh
@@ -124,9 +129,9 @@ npm run test:coverage # Generate the native V8 coverage report
 
 ### 📊 Coverage Report
 
-| Metric | Coverage | Details |
-| :--- | :---: | :--- |
-| **Lines** | **98.54%** | Production-grade execution path verification |
-| **Branches** | **94.19%** | Resilient conditional and error-handling coverage |
-| **Functions** | **85.71%** | Core functions verified across all modules |
-| **Test Suites** | **14 / 14 Passed** | 67 tests passing (0 failures) |
+| Metric          |      Coverage      | Details                                           |
+| :-------------- | :----------------: | :------------------------------------------------ |
+| **Lines**       |     **98.54%**     | Production-grade execution path verification      |
+| **Branches**    |     **94.19%**     | Resilient conditional and error-handling coverage |
+| **Functions**   |     **85.71%**     | Core functions verified across all modules        |
+| **Test Suites** | **14 / 14 Passed** | 67 tests passing (0 failures)                     |
