@@ -1,6 +1,6 @@
 <div align="center">
-  <img src="https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Desktop%20computer/3D/desktop_computer_3d.png" width="120" alt="Brsh Logo" />
-  <h1>Brsh (Interactive Shell & Virtual File System/OS)</h1>
+  <img src="https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Desktop%20computer/3D/desktop_computer_3d.png" width="120" alt="Porsh Logo" />
+  <h1>Porsh (Interactive Shell & Virtual File System/OS)</h1>
   <p><em>An interactive Unix-like Shell and Virtual File System (VFS) engine implemented in TypeScript.</em></p>
 
   <a href="https://nodejs.org">
@@ -9,7 +9,7 @@
   <a href="https://www.typescriptlang.org/">
     <img src="./assets/badges/typescript.svg" alt="TypeScript" />
   </a>
-  <a href="https://github.com/LDrawe/brsh/actions/workflows/tests.yml">
+  <a href="https://github.com/LDrawe/porsh/actions/workflows/tests.yml">
     <img src="./assets/badges/ci-status.svg" alt="CI Status" />
   </a>
   <a href="#-testing--code-coverage">
@@ -22,7 +22,7 @@
   <br />
 </div>
 
-**Brsh** is a high-reliability Unix-like interactive shell and Virtual File System (VFS) engine implemented in TypeScript. It brings core operating system primitives into user-space, featuring an in-memory nested inode tree, two-way state synchronization with physical storage, strict directory sandboxing (chroot jail model), and transactional atomic I/O operations, all exposed through an interactive command-line interface.
+**Porsh** is a high-reliability Unix-like interactive shell and Virtual File System (VFS) engine implemented in TypeScript. It brings core operating system primitives into user-space, featuring an in-memory nested inode tree, two-way state synchronization with physical storage, strict directory sandboxing (chroot jail model), and transactional atomic I/O operations, all exposed through an interactive command-line interface.
 
 ---
 
@@ -60,7 +60,7 @@ graph TD;
 
 ## 💻 Commands
 
-**Brsh** supports a complete ecosystem for file management.
+**Porsh** supports a complete ecosystem for file management.
 
 ### Directory Navigation
 
@@ -109,8 +109,8 @@ graph TD;
 ### 2. Running the Project
 
 ```bash
-git clone https://github.com/LDrawe/brsh.git
-cd brsh
+git clone https://github.com/LDrawe/porsh.git
+cd porsh
 
 npm install
 npm start
@@ -131,7 +131,7 @@ npm run test:coverage # Generate the native V8 coverage report
 
 | Metric          |      Coverage      | Details                                           |
 | :-------------- | :----------------: | :------------------------------------------------ |
-| **Lines**       |     **98.54%**     | Production-grade execution path verification      |
+| **Lines**       |     **98.78%**     | Production-grade execution path verification      |
 | **Branches**    |     **94.19%**     | Resilient conditional and error-handling coverage |
 | **Functions**   |     **85.71%**     | Core functions verified across all modules        |
 | **Test Suites** | **14 / 14 Passed** | 67 tests passing (0 failures)                     |

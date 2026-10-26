@@ -1,5 +1,5 @@
 {
-  "name": "brsh",
+  "name": "porsh",
   "version": "2.0.0",
   "description": "An interactive Unix-like Shell and Virtual File System (VFS) engine built with TypeScript, featuring an in-memory nested inode tree, atomic storage synchronization, and strict path sandboxing",
   "main": "index.ts",
